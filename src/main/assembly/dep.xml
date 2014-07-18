@@ -1,0 +1,21 @@
+<assembly>
+  <id>bin</id>
+  <formats>
+    <format>zip</format>
+    <format>tar</format>
+    <format>tar.gz</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+  <fileSets>
+    <fileSet>
+      <outputDirectory>\</outputDirectory>
+      <includes>
+        <include>README*</include>
+        <include>codenvy.bat</include>
+        <include>codenvy</include>
+        <include>target/${project.artifactId}-${project.version}.jar</include>
+        <include>conf/config</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+</assembly>
