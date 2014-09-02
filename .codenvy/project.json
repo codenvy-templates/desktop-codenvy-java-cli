@@ -1,1 +1,1 @@
-{"type":"maven","properties":[{"name":"builder.name","value":["maven"]}, {"name":"runner.name","value":["java-console-codenvycli"]}]}
+{"attributes":{},"projectTypeId":"maven","builder":"maven","runner":"java-console-codenvycli","defaultBuilderEnvironment":null,"defaultRunnerEnvironment":null,"builderEnvironmentConfigurations":{},"runnerEnvironmentConfigurations":{},"description":null}
