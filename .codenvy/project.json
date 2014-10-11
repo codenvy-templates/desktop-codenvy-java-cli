@@ -1,1 +1,1 @@
-{"type":"maven","attributes":{},"builders":{"default":"maven"},"runners":{"default":"java-console-codenvycli","configs":{}}}
+{"type":"maven","attributes":{},"runners":{"default":"system:/java-console-codenvycli/default","configs":{}},"builders":{"default":"maven"}}
