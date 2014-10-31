@@ -1,72 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    CODENVY CONFIDENTIAL
-    __________________
+    Copyright (c) 2012-2014 Codenvy, S.A.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
 
-     [2012] - [2013] Codenvy, S.A.
-     All Rights Reserved.
-
-    NOTICE:  All information contained herein is, and remains
-    the property of Codenvy S.A. and its suppliers,
-    if any.  The intellectual and technical concepts contained
-    herein are proprietary to Codenvy S.A.
-    and its suppliers and may be covered by U.S. and Foreign Patents,
-    patents in process, and are protected by trade secret or copyright law.
-    Dissemination of this information or reproduction of this material
-    is strictly forbidden unless prior written permission is obtained
-    from Codenvy S.A..
+    Contributors:
+      Codenvy, S.A. - initial API and implementation
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>maven-depmgt-pom</artifactId>
         <groupId>com.codenvy</groupId>
-        <version>1.7.4</version>
+        <version>1.8.18.3</version>
+        <relativePath />
     </parent>
     <groupId>com.codenvy.cli</groupId>
     <artifactId>codenvy-cli</artifactId>
-    <version>0.2-SNAPSHOT</version>
-    <packaging>jar</packaging>
-    <name>Codenvy Commons :: CLI</name>
-    <url>http://maven.apache.org</url>
+    <version>2.1.1</version>
+    <packaging>pom</packaging>
+    <name>Codenvy CLI</name>
+    <licenses>
+        <license>
+            <name>Eclipse Public License</name>
+            <url>http://www.eclipse.org/legal/epl-v10.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Florent Benoit</name>
+            <organization>Serli</organization>
+            <organizationUrl>http://www.serli.com</organizationUrl>
+        </developer>
+        <developer>
+            <name>Stéphane Daviet</name>
+            <organization>Serli</organization>
+            <organizationUrl>http://www.serli.com</organizationUrl>
+        </developer>
+    </developers>
+    <modules>
+        <module>preferences</module>
+        <module>command</module>
+        <module>feature</module>
+        <module>shell</module>
+        <module>assembly</module>
+    </modules>
     <scm>
         <connection>scm:git:git@github.com:codenvy/cli.git</connection>
         <developerConnection>scm:git:git@github.com:codenvy/cli.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>2.1.1</tag>
+        <url>https://github.com/codenvy/cli/tree/v2</url>
     </scm>
     <properties>
-        <codenvy-commons.version>0.29.0</codenvy-commons.version>
+        <assertj.version>1.6.1</assertj.version>
+        <bnd-plugin.attributes />
+        <com.codenvy.client.version>${codenvy.platform-api-client-java.version}</com.codenvy.client.version>
+        <com.fasterxml.jackson.version>2.4.1</com.fasterxml.jackson.version>
+        <license_years>2012-2014</license_years>
+        <maven-bundle-plugin.version>2.5.0</maven-bundle-plugin.version>
+        <org.apache.karaf.feature-plugin.version>2.3.5</org.apache.karaf.feature-plugin.version>
+        <org.apache.karaf.version>3.0.1</org.apache.karaf.version>
+        <osgi-core.version>5.0.0</osgi-core.version>
     </properties>
-    <dependencies>
-        <dependency>
-            <groupId>com.beust</groupId>
-            <artifactId>jcommander</artifactId>
-            <version>1.30</version>
-        </dependency>
-        <dependency>
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20070829</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
     <repositories>
         <repository>
             <id>codenvy-public-repo</id>
@@ -74,98 +74,60 @@
             <url>https://maven.codenvycorp.com/content/groups/public/</url>
         </repository>
     </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>codenvy-public-repo</id>
+            <name>codenvy public</name>
+            <url>https://maven.codenvycorp.com/content/groups/public/</url>
+        </pluginRepository>
+    </pluginRepositories>
     <build>
-        <sourceDirectory>src/main/java</sourceDirectory>
-        <outputDirectory>target/classes</outputDirectory>
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-            </resource>
-            <resource>
-                <filtering>true</filtering>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.karaf.tooling</groupId>
+                    <artifactId>karaf-maven-plugin</artifactId>
+                    <version>${org.apache.karaf.version}</version>
+                    <extensions>true</extensions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
+            <!-- FindBugs -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                            <mainClass>com.codenvy.cli.CodenvyCLI</mainClass>
-                        </manifest>
-                    </archive>
+                    <effort>Max</effort>
+                    <threshold>Low</threshold>
+                    <xmlOutput>true</xmlOutput>
+                </configuration>
+            </plugin>
+            <!-- Maven Bundle plugin -->
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>${maven-bundle-plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <_include>-src/main/bnd/instructions.bnd</_include>
+                        <_plugin>${bnd-plugin.attributes}</_plugin>
+                    </instructions>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <artifactId>maven-release-plugin</artifactId>
                 <configuration>
-                    <finalName>${project.artifactId}-${project.version}</finalName>
-                    <createDependencyReducedPom>false</createDependencyReducedPom>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>com.google.code.maven-replacer-plugin</groupId>
-                <artifactId>replacer</artifactId>
-                <version>1.5.2</version>
-                <executions>
-                    <execution>
-                        <id>windows</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>replace</goal>
-                        </goals>
-                        <configuration>
-                            <file>src/main/codenvy.bat</file>
-                            <outputFile>codenvy.bat</outputFile>
-                            <regex>false</regex>
-                            <token>$JAR_FILE$</token>
-                            <value>${project.artifactId}-${project.version}.jar</value>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>unix</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>replace</goal>
-                        </goals>
-                        <configuration>
-                            <file>src/main/codenvy.sh</file>
-                            <outputFile>codenvy</outputFile>
-                            <regex>false</regex>
-                            <token>$JAR_FILE$</token>
-                            <value>${project.artifactId}-${project.version}.jar</value>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.4</version>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                        <!-- this is used for inheritance merges -->
-                        <phase>package</phase>
-                        <!-- bind to the packaging phase -->
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <descriptor>src/main/assembly/dep.xml</descriptor>
+                    <preparationGoals>clean install</preparationGoals>
                 </configuration>
             </plugin>
         </plugins>

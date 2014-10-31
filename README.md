@@ -1,49 +1,47 @@
-CODENVY CLI
-===
+```
+                                  _
+                                 | |
+         _           ___ ___   __| | ___ _ ____   ___   _
+ {    ('   )    }   / __/ _ \ / _` |/ _ \ '_ \ \ / / | | |
+{{  ('       )  }} | (_| (_) | (_| |  __/ | | \ V /| |_| |
+ { (__,__,__,_) }   \___\___/ \__,_|\___|_| |_|\_/  \__, |
+                                                     __/ |
+                                                    |___/
+```
 
-- Website: http://docs.codenvy.com/cli
-- Source: http://github.com/codenvy/cli
-- Mailing List: [Google Groups] (https://groups.google.com/a/codenvy.com/forum/#!forum/helpdesk)
+Codenvy command line interface V2
+=================================
 
-Codenvy makes SaaS developer environments.  We provide those environments in our public cloud hosted at codenvy.com, or through on premises installations with Codenty Enterprise.  This CLI tool provides command line access to Codenvy installations.  This CLI is portable across MacOS, Linux, and Windows.
 
-Quick Start
------------
-You will need to have [Java version 6] (http://java.com/en/download/index.jsp) or later installed on your system.  Download the CLI library and unzip it in a directory.  The start script depends upon the `JAVA_HOME` environment variable being set and pointing to your Java installation.  Also update `CLI_HOME` to point to the directory where the CLI is installed.  Then set your system `PATH` variable to point to the directory where the CLI is installed.
+![CLI](http://codenvy.github.io/cli/img/cli.gif)
 
-On MacOS or Linux, place this in your `.bashrc` file:
 
-    export JAVA_HOME=DIR_OF_JDK
-    export CLI_HOME=DIR_OF_CLI
-    export PATH=$CLI_HOME:$JAVA_HOME/bin:$PATH
-    
-On Windows, update your system environment variables:
+# Quick Start for the developer
+------------------------------
 
-    JAVA_HOME=DIR_OF_JDK
-    CLI_HOME=DIR_OF_CLI
-    PATH=%CLI_HOME%;%JAVA_HOME%\bin;%PATH%
+## Building
+1. Checkout of the project: git clone https://github.com/codenvy/cli
+2. Build: mvn clean install
 
-Test your configuration by entering `codenvy` in the console window.  You should see the CLI help message appear.
+## Running
+1. Launch from the root directory of the project:
 
-Getting Started Guide
----------------------
-To learn how to interact with remote Codenvy systems, create new projects, load them into the system, and analyze their behavior, view the [Getting Started Guide.] (http://docs.codenvy.com/cli)
+  1.: Interactive client with ./codenvy-cli
+  
+  2.: Non-interactive client with ./codenvy
 
-Contributing to the CLI
------------------------
-To hack on the CLI (or Codenvy) you will need [maven] (http://maven.apache.org/) installed.  
 
-Once your maven is properly configured, you can build the CLI by entering
+## Developing a new command
+Apache Karaf is used for providing the Codenvy CLI.
 
-    mvn clean install
+### New command
+When adding a new builtin command, the following files need to be modified :
+  * command/src/main/resources/OSGI-INF/blueprint/shell-log.xml
+  * command/src/main/resources/META-INF/services/org/apache/karaf/shell/commands
 
-If you run into problems with the build, may need to configure maven to reference the Codenvy central nexus server to download libraries.  Add the following configuration item to your `settings.xml` file either stored in `M2_HOME` or `M2_REPO`.
+The first one is for providing the command to Interactive/OSGi mode and the next one is for providing the command to the default CLI shell in non-interactive mode.
 
-     <mirrors>
-       <mirror>
-         <id>repo.codenvy.private</id>
-         <mirrorOf>external:*</mirrorOf>
-         <url>https://maven.codenvycorp.com/content/groups/codenvy-private-group/</url>
-       </mirror>
-     </mirrors>
-    
+
+### Advanced help 
+The guide to develop karaf command is available at http://karaf.apache.org/manual/latest/developers-guide/extending.html
+
