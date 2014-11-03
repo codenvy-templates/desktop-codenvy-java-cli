@@ -5,7 +5,7 @@
 .project
 .settings/
 target/
-bin/
+#bin/
 test-output/
 
 # Idea #
