@@ -1,1 +1,1 @@
-{"type":"maven","properties":[{"name":"builder.name","value":["maven"]}, {"name":"runner.name","value":["java-console-codenvycli"]}]}
+{"type":"maven","attributes":{},"runners":{"default":"system:/java/codenvy-cli","configs":{}},"builders":{"default":"maven"}}
